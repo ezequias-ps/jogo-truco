@@ -6,12 +6,9 @@ import java.util.Hashtable;
 
 public class Juiz {
     //  3 > 2 > A > k > J > Q > 7 > 6 > 5 > 4
-    private String cartaVira;
     Dictionary<Character, Integer> dic = new Hashtable<Character, Integer>();
 
-    public Juiz(String cartaVira){
-        this.cartaVira = cartaVira;
-
+    public Juiz(){
         dic.put('3', 10);
         dic.put('2', 9);
         dic.put('A', 8);
@@ -24,7 +21,7 @@ public class Juiz {
         dic.put('4', 1);
     }
 
-    public int[] ganhadoresDaRodada(ArrayList<String> cartasJogadas){
+    public int[] ganhadoresDaMao(ArrayList<String> cartasJogadas, String cartaVira){
         String maiorCarta = cartasJogadas.get(0);
         char n1 = cartasJogadas.get(0).charAt(0);
 
