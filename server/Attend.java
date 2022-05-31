@@ -10,6 +10,7 @@ public class Attend extends Thread {
     private ArrayList<Attend> threads;
     Scanner input = null;
     PrintStream output = null;
+    private String nomeJogador;
 
     public Attend(Socket clientSocket, ArrayList<Attend> threads) {
         this.clientSocket = clientSocket;
@@ -18,26 +19,15 @@ public class Attend extends Thread {
 
     @Override
     public void run() {
-        // comunicação
         try {
-            input = new Scanner(clientSocket.getInputStream());
             output = new PrintStream(clientSocket.getOutputStream());
+            input = new Scanner(clientSocket.getInputStream());
 
             this.enviarMensagem("Qual o seu nome?");
-            this.enviarMensagem("Me Responde!");
-
-            String msg;
-            do {
-                msg = input.nextLine();
-                System.out.println(msg);
-                for (Attend attend : threads) {
-                    attend.enviarMensagem(msg);
-                }
-            } while (!msg.equals("exit"));
-
-            input.close();
-            output.close();
-
+            String msg = ouvir();
+            nomeJogador = msg;
+            Jogo.qtdJogadores++;
+            System.out.println(msg);
         } catch (Exception e) {
             System.out.println("Erro na comunicação");
             System.out.println(e.getMessage());
@@ -46,5 +36,18 @@ public class Attend extends Thread {
 
     public void enviarMensagem(String msg) {
         output.println(msg);
+    }
+
+    public String ouvir(){
+            String msg;
+            enviarMensagem("Me responde!");
+            do {
+                msg = input.nextLine();
+            } while (msg.equals(null));
+            return(msg);
+    }
+
+    public String getNomeJogador() {
+        return nomeJogador;
     }
 }

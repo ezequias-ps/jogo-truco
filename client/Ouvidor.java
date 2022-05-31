@@ -13,7 +13,7 @@ public class Ouvidor extends Thread{
     public void run() {
         do {
             String resposta = cliente.input.nextLine();
-            if (resposta.equals("Me Responde!")) cliente.DigitarParaServidor();
+            if (resposta.equals("Me responde!")) cliente.DigitarParaServidor();
             else System.out.println(resposta);
         } while (running);
     }
