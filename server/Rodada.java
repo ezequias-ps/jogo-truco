@@ -13,9 +13,16 @@ public class Rodada {
         this.jogadores = jogadores;
         this.pontosDaRodada = 1;
     }
+
+    public void setPontosDaRodada(int pontosDaRodada) {
+        this.pontosDaRodada = pontosDaRodada;
+    }
+    public int getPontosDaRodada() {
+        return pontosDaRodada;
+    }
     
     public int[] iniciarRodada(){
-        Util.mostraParaTodos(this.jogadores, "Inicio da rodada!");
+        Util.mostraParaTodos(this.jogadores, "\nInicio da rodada!");
         this.baralho = new Baralho();
         this.baralho.embaralhar();
         distribuirCartas(); // Distribui 3 cartas para cada jogador
@@ -30,7 +37,7 @@ public class Rodada {
 
         for (int numDaMao = 1; numDaMao <= 3; numDaMao++) {
             this.mao = new Mao(jogadores);
-            ganhadoresDaMao = mao.iniciarMao(pontosDaRodada, cartaVira, numDaMao);
+            ganhadoresDaMao = mao.iniciarMao(this, cartaVira, numDaMao);
             jogadores.get(ganhadoresDaMao[0]).getAtendente().enviarMensagem(
                 "Você e o(a) " + jogadores.get(ganhadoresDaMao[1]).getNome() +
                 " ganharam a " + numDaMao + "mao.");

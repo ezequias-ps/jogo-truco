@@ -11,8 +11,8 @@ public class Mao {
         this.juiz = new Juiz();
     }
 
-    public int[] iniciarMao(int pontosDaRodada, String cartaVira, int numDaMao) {
-        Util.mostraParaTodos(this.jogadores, "Inicio da " + numDaMao + " mao!");
+    public int[] iniciarMao(Rodada rodada, String cartaVira, int numDaMao) {
+        Util.mostraParaTodos(this.jogadores, "\nInicio da " + numDaMao + " mao!");
         
         ArrayList<String> cartasJogadas = new ArrayList<String>();
         for (Jogador jogador : jogadores){
@@ -27,7 +27,7 @@ public class Mao {
                 cartaJogada = jogador.getAtendente().ouvir();
                 if (cartaJogada.equals("TRUCO")) {
                     boolean resposta = pedirTruco(jogador);
-                    if (resposta) pontosDaRodada = 3; // Altera pontos da rodada
+                    if (resposta) rodada.setPontosDaRodada(3); // Altera pontos da rodada
                 }
 
                 if (!(jogador.getCartas().contains(cartaJogada) || cartaJogada.equals("TRUCO"))) jogador.getAtendente().enviarMensagem("Jogada invalida!");
@@ -42,7 +42,7 @@ public class Mao {
             
         }
 
-        pontosDaRodada = 6;
+        rodada.setPontosDaRodada(6);
         int[] ganhadoresDaMao = juiz.ganhadoresDaMao(cartasJogadas, cartaVira);
         
         Util.mostraParaTodos(jogadores, "TESTANDO... 1");
