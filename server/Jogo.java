@@ -16,7 +16,7 @@ public class Jogo{
     public void start(){
         while (true){
             if (Jogo.qtdJogadores == 4) break;
-            else System.out.println(Jogo.qtdJogadores);
+            //else System.out.println(Jogo.qtdJogadores);
         }
         setJogadores();
         Collections.shuffle(this.jogadores); // Mistura ordem de jogadores no arraylist
