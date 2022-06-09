@@ -8,6 +8,7 @@ public class Rodada {
     Baralho baralho;
     private Mao mao;
     int pontosDaRodada;
+    boolean mao_acabou = false;
 
     public Rodada(ArrayList<Jogador> jogadores){
         this.jogadores = jogadores;
@@ -49,6 +50,8 @@ public class Rodada {
             else duplas[1]++;
 
             if (duplas[0] == 2 || duplas[1] == 2) break;
+
+            if (this.mao_acabou) break;
         }
 
         // pontosDaRodada += this.pontosDaMao;
